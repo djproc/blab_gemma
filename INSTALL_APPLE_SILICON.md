@@ -14,30 +14,47 @@ We use **Homebrew** as the base package manager and **uv** for blazing-fast Pyth
 brew install uv git
 ```
 
-## 2. Local LLM Engine (Ollama / MLX)
+## 2. Local LLM Engine Options
 
-To run Gemma locally on your Mac, you have two primary options:
+To run Gemma on your Mac and leverage the **Agentic OS**, you have three primary paths:
 
-### Option A: Ollama (Recommended for ease of use)
-Ollama natively supports Apple Silicon GPU acceleration.
+### Path A: The Easiest Way (Ollama)
+Ollama is a lightweight engine that manages model weights and automatically uses your Mac's GPU.
 
 ```bash
 # Install Ollama via Homebrew
 brew install --cask ollama
 
-# Start the Ollama application from your Applications folder, then pull Gemma:
+# Start the Ollama application, then pull and run Gemma:
 # (Note: Replace with the specific gemma4 tag when available)
-ollama run gemma:7b 
+ollama run gemma2:9b 
 ```
 
-### Option B: Apple MLX (Recommended for maximum performance/customization)
-If you want to run Gemma directly in Python using Apple's MLX framework (which is heavily optimized for Apple Silicon):
+### Path B: The Performance Way (Apple MLX)
+Since you already ran `uv add mlx mlx-lm`, you can run Gemma directly from your terminal using Apple's high-performance framework.
 
 ```bash
-# First, ensure you are in an initialized uv project:
-uv init
-# Then add the MLX dependencies:
-uv add mlx mlx-lm
+# Run a quick generation:
+uv run python -m mlx_lm.generate --model google/gemma-2-9b-it --prompt "Hello, I am running on Apple Silicon. Who are you?"
+```
+*Note: The first time you run this, it will download several GBs of weights from Hugging Face into your `~/.cache/huggingface` folder.*
+
+### Path C: The "Agentic" Way (Gemini CLI Bridge)
+To make your local Gemma instance "aware" of the **`GEMINI.md`** mandates and skills we just installed, you need to point the Gemini CLI at your local model using a proxy like **LiteLLM**.
+
+```bash
+# 1. Install the bridge
+uv add litellm
+
+# 2. Start the bridge (in a separate terminal pane)
+uv run litellm --model ollama/gemma2:9b
+# This creates a "fake" Google Gemini API at http://0.0.0.0:4000
+
+# 3. Point the Gemini CLI at your Mac
+export GEMINI_API_BASE="http://0.0.0.0:4000"
+
+# 4. Now run your commands! The CLI will use your local Gemma.
+gemini "Review the current directory and check for SOP compliance."
 ```
 
 ## 3. Bootstrapping the Agentic OS

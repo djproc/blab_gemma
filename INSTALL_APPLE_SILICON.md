@@ -34,7 +34,9 @@ ollama run gemma:7b
 If you want to run Gemma directly in Python using Apple's MLX framework (which is heavily optimized for Apple Silicon):
 
 ```bash
-# In your project directory, after uv init:
+# First, ensure you are in an initialized uv project:
+uv init
+# Then add the MLX dependencies:
 uv add mlx mlx-lm
 ```
 

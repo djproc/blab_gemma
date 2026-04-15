@@ -25,9 +25,8 @@ Ollama is a lightweight engine that manages model weights and automatically uses
 # Install Ollama via Homebrew
 brew install --cask ollama
 
-# Start the Ollama application, then pull and run Gemma:
-# (Note: Replace with the specific gemma4 tag when available)
-ollama run gemma2:9b 
+# Start the Ollama application, then pull and run Gemma 4:
+ollama run gemma4
 ```
 
 ### Path B: The Performance Way (Apple MLX)
@@ -35,7 +34,7 @@ Since you already ran `uv add mlx mlx-lm`, you can run Gemma directly from your 
 
 ```bash
 # Run a quick generation:
-uv run python -m mlx_lm.generate --model google/gemma-2-9b-it --prompt "Hello, I am running on Apple Silicon. Who are you?"
+uv run python -m mlx_lm.generate --model google/gemma-4-it --prompt "Hello, I am running on Apple Silicon. Who are you?"
 ```
 *Note: The first time you run this, it will download several GBs of weights from Hugging Face into your `~/.cache/huggingface` folder.*
 
@@ -47,7 +46,7 @@ To make your local Gemma instance "aware" of the **`GEMINI.md`** mandates and sk
 uv add litellm
 
 # 2. Start the bridge (in a separate terminal pane)
-uv run litellm --model ollama/gemma2:9b
+uv run litellm --model ollama/gemma4
 # This creates a "fake" Google Gemini API at http://0.0.0.0:4000
 
 # 3. Point the Gemini CLI at your Mac

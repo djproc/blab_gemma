@@ -23,8 +23,8 @@ cp -r "$SOURCE_DIR/SOPs/"* "$TARGET_DIR/SOPs/"
 
 echo "-> Linking Skills to Gemini CLI..."
 if command -v gemini &> /dev/null; then
-    echo "   Linking extension: blab_gemma_skills"
-    gemini extensions link "$SOURCE_DIR/gemini_extension" || echo "   ⚠️ Failed to link blab_gemma_skills"
+    echo "   Linking extension: blab-gemma-skills"
+    gemini extensions link "$SOURCE_DIR/gemini_extension" || echo "   ⚠️ Failed to link blab-gemma-skills"
 else
     echo "⚠️ Gemini CLI not found in PATH. Skipping skill linking."
 fi

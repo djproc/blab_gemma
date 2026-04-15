@@ -18,7 +18,7 @@ cp -r /tmp/blab_gemma/SOPs/ .
 
 # 3. Link the specialized skills to your Gemini CLI
 # (Requires Gemini CLI v0.6.0+)
-gemini extensions link /tmp/blab_gemma/skills/visual-verification
+gemini extensions link /tmp/blab_gemma/gemini_extension
 ```
 
 ## 🧠 Core Components

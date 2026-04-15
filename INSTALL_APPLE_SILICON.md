@@ -44,7 +44,7 @@ Navigate to your target project folder and run the bootstrap script. `uv` native
 
 ```bash
 # 1. Clone the core
-have 
+git clone https://github.com/djproc/blab_gemma /tmp/blab_gemma
 
 # 2. Run the bootstrap
 /tmp/blab_gemma/scripts/install_gemma_core.sh

@@ -32,8 +32,16 @@ ollama run gemma4
 ### Path B: The Performance Way (Apple MLX)
 Since you already ran `uv add mlx mlx-lm`, you can run Gemma directly from your terminal using Apple's high-performance framework.
 
+*Note: Gemma models are "Gated" on Hugging Face. You must accept the license agreement on their website and log in locally before downloading the weights.*
+
 ```bash
-# Run a quick generation:
+# 1. Install the Hugging Face CLI
+uv add huggingface_hub
+
+# 2. Log in (paste your User Access Token when prompted)
+uv run huggingface-cli login
+
+# 3. Run a quick generation:
 uv run python -m mlx_lm.generate --model google/gemma-4-it --prompt "Hello, I am running on Apple Silicon. Who are you?"
 ```
 *Note: The first time you run this, it will download several GBs of weights from Hugging Face into your `~/.cache/huggingface` folder.*
